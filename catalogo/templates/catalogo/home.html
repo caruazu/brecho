@@ -1,34 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>brecho</title>
-</head>
-<body>
-      {% if itens %}
-      <table>
+{% extends "base.html" %}
+{% block title %}Brechó — Itens{% endblock %}
+{% block content %}
+
+  <div class="d-flex align-items-center mb-3">
+    <h1 class="h3 mb-0">Itens</h1>
+    <div class="ms-auto">
+      <a href="/admin/catalogo/item/add/" class="btn btn-primary btn-sm">Novo item</a>
+    </div>
+  </div>
+
+  {% if itens %}
+    <div class="table-responsive">
+      <table class="table align-middle">
         <thead>
           <tr>
             <th>Item</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Status</th>
+            <th style="width:140px">Preço</th>
+            <th style="width:120px">Estoque</th>
+            <th style="width:160px">Status</th>
+            <th style="width:1%"></th>
           </tr>
         </thead>
         <tbody>
           {% for item in itens %}
-          <tr>
-            <td>{{ item.nome }}</td>
-            <td>R$ {{ item.preco }}</td>
-            <td>{{ item.estoque }}</td>
-            <td><span class="badge">Disponível</span></td>
-          </tr>
+            <tr data-row-id="{{ item.id }}">
+              <td class="fw-medium">{{ item.nome }}</td>
+              <td>R$ {{ item.preco }}</td>
+              <td>{{ item.estoque }}</td>
+              <td>
+                <span class="badge rounded-pill {{ item.disponivel|yesno:'text-bg-success,text-bg-secondary' }}">
+                  {{ item.disponivel|yesno:'Disponível,Indisponível' }}
+                </span>
+              </td>
+              <td class="text-end">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-primary btn-toggle"
+                  data-item-id="{{ item.id }}"
+                >
+                  Alternar
+                </button>
+              </td>
+            </tr>
           {% endfor %}
         </tbody>
       </table>
-    {% else %}
-      <p>Nenhum item disponível no momento.</p>
-    {% endif %}
-</body>
-</html>
+    </div>
+  {% else %}
+    <div class="alert alert-info">Nenhum item disponível no momento.</div>
+  {% endif %}
+
+{% endblock %}

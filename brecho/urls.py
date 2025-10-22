@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from catalogo.views import Home
+from catalogo.views import Home, toggle_disponivel
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view(), name='home')
+    path('', Home.as_view(), name='home'),
+    path("api/items/<int:pk>/toggle/", toggle_disponivel, name="toggle-item"),
 ]
