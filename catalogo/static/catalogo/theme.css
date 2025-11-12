@@ -1,0 +1,45 @@
+/* === Pontinhos estilo pop-art === */
+:root{
+  /* Ajuste aqui a cor, tamanho do ponto e espaçamento */
+  --dot-color: #f3f3f3;     /* cinza dos pontinhos */
+  --dot-size: 1px;          /* raio do ponto */
+  --dot-gap: 8px;          /* distância entre os pontos */
+  --paper: #fff;            /* cor de fundo base (papel) */
+}
+
+/* Fundo pontilhado no body */
+body{
+  background:
+    radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size)) 0 0 / var(--dot-gap) var(--dot-gap),
+    radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size)) calc(var(--dot-gap)/2) calc(var(--dot-gap)/2) / var(--dot-gap) var(--dot-gap),
+    var(--paper);
+}
+
+/* === Tipografia pop-art === */
+:root{
+  --font-display: "Anton", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Comic Relief", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Troca global do corpo (Bootstrap respeita esta var) */
+:root { --bs-font-sans-serif: var(--font-body); }
+body { font-family: var(--bs-font-sans-serif); }
+
+/* Títulos e itens de marca com a display */
+h1, h2, h3, .h1, .h2, .h3,
+.navbar-brand, .btn-brand, .headline-pop {
+  font-family: var(--font-display);
+  letter-spacing: .02em;
+}
+
+/* Um toque “quadrinhos”: tudo em caps nos títulos principais */
+h1, .headline-pop { text-transform: uppercase; }
+
+/* Contornos opcionais para títulos (use com parcimônia) */
+.headline-outline {
+  color: #fff;
+  -webkit-text-stroke: 2px #000;
+}
+
+/* Botões um pouco mais “cartazes” */
+.btn, .badge { font-weight: 700; letter-spacing: .02em; }

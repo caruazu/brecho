@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Brechó — Itens{% endblock %}
+{% block title %}Brechó{% endblock %}
 {% block content %}
 
   <div class="d-flex align-items-center mb-3">
     <h1 class="h3 mb-0">Itens</h1>
     <div class="ms-auto">
-      <a href="/admin/catalogo/item/add/" class="btn btn-primary btn-sm">Novo item</a>
+      <a href="/admin/catalogo/item/add/" class="btn btn-success btn-sm">Novo item</a>
     </div>
   </div>
 
@@ -28,14 +28,14 @@
               <td>R$ {{ item.preco }}</td>
               <td>{{ item.estoque }}</td>
               <td>
-                <span class="badge rounded-pill {{ item.disponivel|yesno:'text-bg-success,text-bg-secondary' }}">
+                <span class="badge {{ item.disponivel|yesno:'text-bg-success,text-bg-secondary' }}">
                   {{ item.disponivel|yesno:'Disponível,Indisponível' }}
                 </span>
               </td>
               <td class="text-end">
                 <button
                   type="button"
-                  class="btn btn-sm btn-outline-primary btn-toggle"
+                  class="btn btn-sm btn-outline-info btn-toggle"
                   data-item-id="{{ item.id }}"
                 >
                   Alternar
